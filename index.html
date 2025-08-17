@@ -3,157 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Recommendations</title>
-    <style>
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            padding: 1rem;
-        }
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            padding: 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        /* Page Sections */
-        .page {
-            display: none;
-            padding: 2rem;
-        }
-        .active {
-            display: block;
-        }
-        
-        /* Recommendation Cards */
-        .recommendation {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        .recommendation img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-        
-        /* Contact Form */
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-        }
-        input, textarea {
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-        }
-    </style>
+    <title>TravelEase - Discover Your Perfect Destination</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="#" onclick="showPage('home')">Home</a></li>
-            <li><a href="#" onclick="showPage('about')">About Us</a></li>
-            <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+    <nav class="navbar">
+        <h1 class="logo">TravelEase</h1>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </nav>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <h1>Welcome to Travel Explorer</h1>
-        <p>Discover your perfect travel destination based on your preferences!</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Perfect Destination</h1>
+            <p>Let us help you find the ideal travel spot based on your preferences and dreams.</p>
+            <button class="cta-button" id="exploreBtn">Explore Destinations</button>
+        </div>
+    </section>
+
+    <section class="recommendations">
+        <h2>Featured Recommendations</h2>
         
-        <h2>Beach Recommendations</h2>
-        <div id="beach-recommendations" class="recommendation"></div>
+        <div class="category" id="beach-section">
+            <h3>Beach Getaways</h3>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Tropical Beach">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206" alt="White Sand Beach">
+            </div>
+            <p>Relax on the world's most beautiful beaches with crystal clear waters.</p>
+        </div>
         
-        <h2>Temple Recommendations</h2>
-        <div id="temple-recommendations" class="recommendation"></div>
+        <div class="category" id="temple-section">
+            <h3>Cultural Temples</h3>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0" alt="Angkor Wat">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5" alt="Bagan Temples">
+            </div>
+            <p>Explore ancient temples and immerse yourself in rich cultural heritage.</p>
+        </div>
         
-        <h2>Country Recommendations</h2>
-        <div id="country-recommendations" class="recommendation"></div>
-    </div>
+        <div class="category" id="country-section">
+            <h3>Country Highlights</h3>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3" alt="Japan">
+                <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25" alt="Italy">
+            </div>
+            <p>Discover the best each country has to offer from cuisine to landmarks.</p>
+        </div>
+    </section>
 
-    <!-- About Us Page -->
-    <div id="about" class="page">
-        <h1>About Our Travel Service</h1>
-        <p>We're passionate about helping you discover amazing destinations around the world.</p>
-        <p>Our team of travel experts has visited over 50 countries to bring you the best recommendations.</p>
-    </div>
-
-    <!-- Contact Us Page -->
-    <div id="contact" class="page">
-        <h1>Contact Us</h1>
-        <form id="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-
-    <script>
-        // Page Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        // Recommendation Data
-        const recommendations = {
-            beaches: [
-                { name: "Maldives", description: "Crystal clear waters and white sandy beaches", images: ["maldives1.jpg", "maldives2.jpg"] },
-                { name: "Bora Bora", description: "Luxury overwater bungalows in French Polynesia", images: ["borabora1.jpg", "borabora2.jpg"] }
-            ],
-            temples: [
-                { name: "Angkor Wat", description: "Largest religious monument in the world", images: ["angkor1.jpg", "angkor2.jpg"] },
-                { name: "Borobudur", description: "9th-century Buddhist temple in Indonesia", images: ["borobudur1.jpg", "borobudur2.jpg"] }
-            ],
-            countries: [
-                { name: "Japan", description: "Cherry blossoms and ancient traditions", images: ["japan1.jpg", "japan2.jpg"] },
-                { name: "Italy", description: "Historic cities and delicious cuisine", images: ["italy1.jpg", "italy2.jpg"] }
-            ]
-        };
-
-        // Render Recommendations
-        function renderRecommendations() {
-            renderCategory('beach', recommendations.beaches);
-            renderCategory('temple', recommendations.temples);
-            renderCategory('country', recommendations.countries);
-        }
-
-        function renderCategory(type, items) {
-            const container = document.getElementById(`${type}-recommendations`);
-            container.innerHTML = items.map(item => `
-                <div>
-                    <h3>${item.name}</h3>
-                    <p>${item.description}</p>
-                    <div>
-                        ${item.images.map(img => `<img src="images/${img}" alt="${item.name}">`).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Form Submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            this.reset();
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', renderRecommendations);
-    </script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
